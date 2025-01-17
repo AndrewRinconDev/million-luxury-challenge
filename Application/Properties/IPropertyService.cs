@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Intefaces
+namespace Application.Properties
 {
-    public interface IPropertyRepository
+    public interface IPropertyService
     {
         Task<List<Property>> GetPropertiesAsync(string? name, string? address, decimal? minPrice, decimal? maxPrice);
         Task<Property?> GetPropertyByIdAsync(string id);

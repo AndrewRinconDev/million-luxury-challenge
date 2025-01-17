@@ -1,4 +1,4 @@
-﻿using Application.Properties.UseCases;
+﻿using Application.Properties;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,43 +8,59 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class PropertyController : ControllerBase
     {
-        private readonly GetPropertiesUseCase _getAllUseCase;
-        private readonly CreatePropertyUseCase _createPropertyUseCase;
+        private readonly IPropertyService _propertyService;
 
-        public PropertyController(GetPropertiesUseCase getAllUseCase, CreatePropertyUseCase createPropertyUseCase)
+        public PropertyController(IPropertyService propertyService)
         {
-            _getAllUseCase = getAllUseCase;
-            _createPropertyUseCase = createPropertyUseCase;
+            _propertyService = propertyService;
         }
 
-        [HttpGet(Name = "GetAllProperties")]
+        [HttpGet()]
         public async Task<IActionResult> GetProperties([FromQuery] string? name, [FromQuery] string? address, [FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice)
         {
-            var properties = await _getAllUseCase.Execute(name, address, minPrice, maxPrice);
-            return Ok(properties);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetProperties([FromQuery] string? name, [FromQuery] string? address, [FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice)
-        {
-            var properties = await _propertyService.GetPropertiesAsync(name, address, minPrice, maxPrice);
-            return Ok(properties);
+            try
+            {
+                var properties = await _propertyService.GetPropertiesAsync(name, address, minPrice, maxPrice);
+                return Ok(properties);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPropertyById(Guid id)
+        public async Task<IActionResult> GetPropertyById(string id)
         {
-            var property = await _propertyService.GetPropertyByIdAsync(id);
-            if (property == null) return NotFound();
-            return Ok(property);
+            try
+            {
+                var property = await _propertyService.GetPropertyByIdAsync(id);
+
+                if (property == null) return NotFound();
+
+                return Ok(property);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpPost(Name = "CreateProperty")]
         public async Task<IActionResult> Create([FromBody] Property property)
         {
-            // Create property
-            await _createPropertyUseCase.Execute(property);
-            return CreatedAtRoute("GetAllProperties", null);
+            try
+            {
+                await _propertyService.CreateAsync(property);
+                return CreatedAtRoute("GetAllProperties", null);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
