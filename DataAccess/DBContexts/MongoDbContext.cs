@@ -19,6 +19,7 @@ namespace Adapters.DBContexts
 
         public IMongoCollection<T> GetCollection<T>(string name)
         {
+            // Generic get the collection of the database
             return _database.GetCollection<T>(name);
         }
     }

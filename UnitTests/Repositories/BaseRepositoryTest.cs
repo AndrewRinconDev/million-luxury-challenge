@@ -25,7 +25,7 @@ namespace UnitTests.Repositories
             _mockContext.Setup(context => context.GetCollection<Property>("properties"))
                 .Returns(_mockCollection.Object);
 
-            _repository = new PropertyRepository(_mockCollection.Object);
+            _repository = new PropertyRepository(_mockContext.Object);
         }
 
     }

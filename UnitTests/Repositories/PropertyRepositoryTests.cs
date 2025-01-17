@@ -1,4 +1,5 @@
-﻿using Adapters.Repositories;
+﻿using Adapters.DBContexts;
+using Adapters.Repositories;
 using Domain.Entities;
 using Mongo2Go;
 using MongoDB.Driver;
@@ -79,9 +80,8 @@ namespace UnitTests.Repositories
             // Insert test data
             collection.InsertMany(mockProperties);
 
-
             // Instantiate the repository with the actual collection
-            var repository = new PropertyRepository(collection);
+            var repository = new PropertyRepository(new MongoDbContext(_database));
 
             // Act
             var result = await repository.GetPropertiesAsync(null, null, null, null);
@@ -105,7 +105,7 @@ namespace UnitTests.Repositories
             // Insert test data
             collection.InsertMany(mockProperties);
 
-            var repository = new PropertyRepository(collection);
+            var repository = new PropertyRepository(new MongoDbContext(_database));
 
             // Act
             var result = await repository.GetPropertiesAsync("House", null, 100000, 200000);
@@ -135,7 +135,7 @@ namespace UnitTests.Repositories
 
 
             // Instantiate the repository with the actual collection
-            var repository = new PropertyRepository(collection);
+            var repository = new PropertyRepository(new MongoDbContext(_database));
 
             // Act
             var result = await repository.GetPropertyByIdAsync("67898fc11c4a87d0d8ee8161");
@@ -164,7 +164,7 @@ namespace UnitTests.Repositories
             collection.InsertOne(testProperty);
 
             // Instantiate the repository with the actual collection
-            var repository = new PropertyRepository(collection);
+            var repository = new PropertyRepository(new MongoDbContext(_database));
 
             // Act
             var result = await repository.GetPropertyByIdAsync("67898fc11c4a87d0d8ee8162");

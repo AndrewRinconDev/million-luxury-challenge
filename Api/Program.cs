@@ -2,11 +2,9 @@ using Adapters.DBContexts;
 using Adapters.Repositories;
 using Adapters.Services;
 using Application.Properties;
-using Domain.Entities;
 using Domain.Intefaces;
 using Mongo2Go;
 using MongoDB.Driver;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +22,8 @@ if (environment == "Testing")
     {
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase("TestDatabase");
-        return new MongoDbContext(database); // MongoDbContext es tu implementación
+        // MongoDbContext implementation
+        return new MongoDbContext(database);
     });
 }
 else
@@ -33,22 +32,12 @@ else
     var connectionString = builder.Configuration["MongoDb:ConnectionString"];
     var databaseName = builder.Configuration["MongoDb:DatabaseName"];
 
-    //builder.Services.AddSingleton<IDbContext>(sp =>
-    //{
-    //    var client = new MongoClient(connectionString);
-    //    var database = client.GetDatabase(databaseName);
-    //    return new MongoDbContext(database); // MongoDbContext is your implementation
-    //});
-    builder.Services.AddSingleton<IMongoClient>(sp =>
+    builder.Services.AddSingleton<IDbContext>(sp =>
     {
-        return new MongoClient(connectionString);
-    });
-
-    builder.Services.AddSingleton(sp =>
-    {
-        var client = sp.GetRequiredService<IMongoClient>();
+        var client = new MongoClient(connectionString);
         var database = client.GetDatabase(databaseName);
-        return database.GetCollection<Property>("properties");
+        // MongoDbContext implementation
+        return new MongoDbContext(database);
     });
 }
 
@@ -57,6 +46,7 @@ builder.Services.AddScoped<IPropertyService, PropertyService>();
 builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
