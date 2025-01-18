@@ -51,6 +51,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+               builder =>
+               {
+            builder.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Request pipeline configuration
@@ -60,6 +72,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
 app.MapControllers();
 
 app.Run();
