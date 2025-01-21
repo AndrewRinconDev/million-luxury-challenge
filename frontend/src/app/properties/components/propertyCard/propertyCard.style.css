@@ -7,12 +7,18 @@
   border-radius: 5px;
   overflow: hidden;
   padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+/* .property-card:hover {
+  transform: rotate(1deg);
+} */
 
 .property-image {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
+  position: relative;
   /* object-position: center bottom; */
 }
 
@@ -31,4 +37,8 @@
   color: white;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.property-button:hover {
+  opacity: 0.8;
 }

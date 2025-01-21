@@ -1,20 +1,23 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'
+"use client";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-import { getPropertyById } from '../services/property.service';
-import propertyModel from '../models/property.model';
-import './page.style.css';
-import Link from 'next/link';
+import { getPropertyById } from "../services/property.service";
+import propertyModel from "../models/property.model";
+import { getImageData } from "../../../utilities/getImageData.ts/getImageData";
+import ImagesGallery from "../../../components/common/galleryImages/ImagesGallery.component";
+import PropertyDescription from "../components/propertyDescription/propertyDescription.component";
+import LoadingOverlay from "../../../components/common/loadingOverlay/loadingOverlay.component";
 
-function propertyDetailPage() {
+import "./page.style.css";
+
+function PropertyDetailPage() {
   const [propertyData, setPropertyData] = useState<null | propertyModel>(null);
-  const {propertyId} = useParams();
+  const { propertyId } = useParams();
 
   const fetchProperty = async () => {
     const property = await getPropertyById(propertyId);
     setPropertyData(property);
-    console.log(property);
   };
 
   useEffect(() => {
@@ -22,23 +25,23 @@ function propertyDetailPage() {
     fetchProperty();
   }, []);
 
+  if (!propertyData) {
+    return <LoadingOverlay />;
+  }
+
   return (
-  <section className="property-detail-page-section">
-    <div className="back-button-container">
-      <Link href="/">{'⬅️ Back'}</Link>
-    </div>
-    <div>
-      <h1>Property Detail</h1>
-      {propertyData && (
-        <div>
-          <h2>{propertyData.name}</h2>
-          <p>{propertyData.address}</p>
-          <p>{propertyData.price}</p>
-        </div>
-      )}
-    </div>
-  </section>
-  )
+    <section className="property-detail-page-section">
+      <div className="property-images-container">
+        <ImagesGallery
+          imagesSrc={getImageData(propertyData.propertyImages)}
+          alt={propertyData.name}
+        />
+      </div>
+      <div className="property-info-container">
+        <PropertyDescription propertyData={propertyData} />
+      </div>
+    </section>
+  );
 }
 
-export default propertyDetailPage;
+export default PropertyDetailPage;

@@ -2,19 +2,32 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 20px;
 }
 
-.back-button-container {
+.property-images-container {
   display: flex;
-  justify-content: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.property-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
 }
 
-.back-button-container a {
-  padding: 5px 10px;
-  background-color: white;
-  color: #00a6ed;
-  border: 1px solid #00a6ed;
-  border-radius: 5px;
-  cursor: pointer;
+@media screen and (min-width: 768px) {
+  .property-detail-page-section {
+    flex-direction: row;
+  }
+
+  .property-images-container {
+    width: 60%;
+  }
+
+  .property-info-container {
+    width: 40%;
+  }
 }

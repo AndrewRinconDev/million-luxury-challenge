@@ -54,7 +54,7 @@ namespace Api.Controllers
             try
             {
                 await _propertyService.CreateAsync(property);
-                return CreatedAtRoute("GetAllProperties", null);
+                return Ok();
             }
             catch (Exception ex)
             {

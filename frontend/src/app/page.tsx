@@ -1,6 +1,8 @@
 'use client'
 import { useState, useEffect } from "react";
 
+import LoadingOverlay from "../components/common/loadingOverlay/loadingOverlay.component";
+
 import { getAllProperties } from "./properties/services/property.service";
 import propertyModel from "./properties/models/property.model";
 import PropertyFilters from "./properties/components/propertyFilters/propertyFilters.component";
@@ -24,10 +26,14 @@ export default function PropertiesPage() {
     getFilteredProperties();
   }, []);
 
+  if (!properties.length) {
+    return <LoadingOverlay />;
+  }
+
   return (
     <div className="flex flex-col md:flex-row">
       <PropertyFilters filter={filter} setFilter={setFilter} getFilteredProperties={getFilteredProperties} />
-      <div className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
         {properties.map((property) => (
           <PropertyCard key={property.idProperty} property={property} />
         ))}
