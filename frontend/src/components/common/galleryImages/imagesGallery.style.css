@@ -69,6 +69,6 @@
 
   .image-item-container {
     gap: 10px;
-    max-width: 20%;
+    max-width: calc(20% - 8px);
   }
 }
