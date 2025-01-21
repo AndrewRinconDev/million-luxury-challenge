@@ -64,6 +64,7 @@ p {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (min-width: 768px) {
