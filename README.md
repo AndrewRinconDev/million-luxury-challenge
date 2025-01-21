@@ -77,6 +77,15 @@ To run tests, run the following command
   npm run test
 ```
 
+## Pages
+
+### Main
+![image](https://github.com/user-attachments/assets/b21d330a-7889-430e-a14c-6ee245764874)
+
+### Detail
+![image](https://github.com/user-attachments/assets/19061352-c7cc-4953-bd9c-d16c7409dc6c)
+
+
 
 ## Authors
 
