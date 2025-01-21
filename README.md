@@ -1,11 +1,11 @@
 
-# Million Luxury Assesment
+# Million Luxury Assessment
 
-The API was developed with .netCore 6, Mongo DB for the database with a hexagonal architecture and repository pattern for handling injections, with the respective Unit tests. The frontend was developed with React 19 and NextJS 15 and consumption of API services with fetch and the corresponding Unit Tests.
+The API was developed with .netCore 6, Mongo DB for the database with a hexagonal architecture and repository pattern for handling injections, with the respective Unit tests. The frontend was developed with React 19 and NextJS 15, For styling, tailwind css and some pure css styles with a simple responsive design for Mobile first were used and consumption of API services with fetch and the corresponding Unit Tests.
 
 Copyrighted images were used for demonstration purposes only.
 
-Assesment carried out as a selection process.
+Assessment carried out as a selection process.
 
 
 ## Prerequisites
@@ -66,7 +66,7 @@ Start the server
   npm run dev
 ```
 
-***Important:** Confirm that the backend is running on port **7015**, if not configure it in the contants/global.ts file*
+***Important:** Confirm that the backend is running on port **7815**, if not configure it in the contants/global.ts file*
 
 
 ## Running Tests
