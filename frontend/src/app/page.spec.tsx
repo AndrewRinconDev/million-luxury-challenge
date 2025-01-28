@@ -5,14 +5,14 @@ import { getAllProperties } from './properties/services/property.service';
 import propertyModel from './properties/models/property.model';
 import PropertyFilters from './properties/components/propertyFilters/propertyFilters.component';
 import PropertyCard from './properties/components/propertyCard/propertyCard.component';
-import LoadingOverlay from '../components/common/loadingOverlay/loadingOverlay.component';
+import LoadingOverlay from './core/components/loadingOverlay/loadingOverlay.component';
 
 import PropertiesPage from './page';
 
 jest.mock('./properties/services/property.service');
 jest.mock('./properties/components/propertyFilters/propertyFilters.component');
 jest.mock('./properties/components/propertyCard/propertyCard.component');
-jest.mock('../components/common/loadingOverlay/loadingOverlay.component');
+jest.mock('./core/components/loadingOverlay/loadingOverlay.component');
 
 describe('PropertiesPage', () => {
   const mockProperties: propertyModel[] = [

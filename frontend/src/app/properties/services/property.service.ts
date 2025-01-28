@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../../constants/global";
+import { API_BASE_URL } from "../../core/constants/global";
 
 import propertyModel from "../models/property.model";
 

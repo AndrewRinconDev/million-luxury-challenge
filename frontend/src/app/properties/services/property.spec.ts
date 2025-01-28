@@ -1,9 +1,8 @@
-import { mockFetch, mockFetchError } from '../../../testHelpers/mockFetch';
+import { mockFetch, mockFetchError } from '../../core/testHelpers/mockFetch';
 import propertyModel from '../models/property.model';
 import { getAllProperties, getPropertyById, createProperty } from './property.service';
 
 describe('Property Service', () => {
-  
   describe('getAllProperties', () => {
     it('should return a list of properties', async () => {
       const mockFetchResponse = [

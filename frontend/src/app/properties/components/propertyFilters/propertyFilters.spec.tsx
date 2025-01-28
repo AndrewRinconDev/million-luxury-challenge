@@ -31,8 +31,8 @@ describe('PropertyFilters Component', () => {
     const mockFilter = {
       name: 'Test',
       address: 'Test',
-      minPrice: 100,
-      maxPrice: 200,
+      minPrice: '100',
+      maxPrice: '200',
     };
     render(<PropertyFilters filter={mockFilter} setFilter={mockSetFilter} getFilteredProperties={mockGetFilteredProperties} />);
     
@@ -80,7 +80,7 @@ describe('PropertyFilters Component', () => {
     
     fireEvent.change(screen.getByPlaceholderText('Min Price'), { target: { value: '100' } });
 
-    expect(mockSetFilter).toHaveBeenCalledWith({ ...mockFilter, minPrice: 100 });
+    expect(mockSetFilter).toHaveBeenCalledWith({ ...mockFilter, minPrice: '100' });
   });
 
   it('updates the filter when the max price input changes', () => {
@@ -94,6 +94,6 @@ describe('PropertyFilters Component', () => {
     
     fireEvent.change(screen.getByPlaceholderText('Max Price'), { target: { value: '200' } });
 
-    expect(mockSetFilter).toHaveBeenCalledWith({ ...mockFilter, maxPrice: 200 });
+    expect(mockSetFilter).toHaveBeenCalledWith({ ...mockFilter, maxPrice: '200' });
   });
 });

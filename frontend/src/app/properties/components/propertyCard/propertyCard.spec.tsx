@@ -5,8 +5,6 @@ import PropertyCard from './propertyCard.component';
 import { propertyDataMock } from './__mock__/propertyDataMock';
 
 describe('PropertyCard', () => {
-  
-
   it('should render property data', () => {
     render(<PropertyCard property={propertyDataMock} />);
 

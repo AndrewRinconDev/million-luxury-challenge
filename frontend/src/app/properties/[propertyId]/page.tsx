@@ -4,10 +4,10 @@ import { useParams } from "next/navigation";
 
 import { getPropertyById } from "../services/property.service";
 import propertyModel from "../models/property.model";
-import { getImageData } from "../../../utilities/getImageData.ts/getImageData";
-import ImagesGallery from "../../../components/common/galleryImages/ImagesGallery.component";
 import PropertyDescription from "../components/propertyDescription/propertyDescription.component";
-import LoadingOverlay from "../../../components/common/loadingOverlay/loadingOverlay.component";
+import LoadingOverlay from "../../core/components/loadingOverlay/loadingOverlay.component";
+import ImagesGallery from "../../core/components/imagesGallery/ImagesGallery.component";
+import { getImageData } from "../../core/utilities/getImageData.ts/getImageData";
 
 import "./page.style.css";
 

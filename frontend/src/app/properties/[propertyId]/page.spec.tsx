@@ -5,7 +5,7 @@ import propertyModel from "../../properties/models/property.model";
 
 jest.mock("../../properties/services/property.service");
 jest.mock(
-  "../../../components/common/loadingOverlay/loadingOverlay.component",
+  "../../core/components/loadingOverlay/loadingOverlay.component",
   () => jest.fn(() => <div>Loading...</div>)
 );
 jest.mock("next/navigation", () => ({
